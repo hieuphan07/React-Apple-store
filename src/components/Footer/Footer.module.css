@@ -1,0 +1,28 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  color: white;
+  padding: 50px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.footer > ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 80%;
+  list-style: none;
+  font-weight: 300;
+}
+
+.footer ul li > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  font-weight: 200;
+  padding-top: 20px;
+}

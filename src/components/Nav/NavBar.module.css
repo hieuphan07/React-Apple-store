@@ -1,0 +1,31 @@
+.main-header {
+  padding: 20px 10rem;
+}
+.navbar, 
+.navbarLeft, 
+.navbarRight, 
+.navbarMid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  list-style: none;
+}
+
+.navbar a, 
+.navbar h4 {
+  text-decoration: none;
+  color: #000;
+  font-style: italic;
+}
+
+.navbar a:active,
+.navbar a:hover {
+  cursor: pointer;
+  color: rgb(255, 213, 47)
+}
+
+.navbarMid h4 {
+  font-weight: 400;
+}
+

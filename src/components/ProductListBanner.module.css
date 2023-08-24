@@ -1,0 +1,12 @@
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--green-light);
+  margin: 0 10rem;
+  padding: 5rem 2rem;
+}
+
+.banner h2, .banner h4 {
+  color: var(--grey-light);
+}
