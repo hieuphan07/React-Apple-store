@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
-import DUMMY_CATEGORIES from '../dummyData/dummyCategories.json'
+import DUMMY_CATEGORIES from '../../dummyData/dummyCategories.json'
 
 import classes from './ProductListNav.module.css'
 

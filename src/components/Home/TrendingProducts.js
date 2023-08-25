@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
-import useMouse from '../hooks/useMouse';
+import useMouse from '../../hooks/useMouse';
 
-import DUMMY_EXTRA_INFO from '../dummyData/dunmmyExtraInfo.json'
+import DUMMY_EXTRA_INFO from '../../dummyData/dunmmyExtraInfo.json'
 
 import classes from './TrendingProducts.module.css';
 

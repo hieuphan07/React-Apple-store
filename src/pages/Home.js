@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import HomePageContent from "../components/HomePageContent";
-import TrendingProducts from '../components/TrendingProducts'
-import Popup from "../components/Popup";
+import HomePageContent from "../components/Home/HomePageContent";
+import TrendingProducts from '../components/Home/TrendingProducts'
+import Popup from "../components/Home/Popup";
 
 const urlFetch = 'https://firebasestorage.googleapis.com/v0/b/funix-subtitle.appspot.com/o/Boutique_products.json?alt=media&token=dc67a5ea-e3e0-479e-9eaf-5e01bcd09c74';
 

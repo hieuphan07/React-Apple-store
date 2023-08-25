@@ -1,6 +1,6 @@
 import { Outlet, useLoaderData } from "react-router-dom"
 
-import NavBar from "../components/Nav/NavBar"
+import NavBar from "../MainNavigation/NavBar"
 import Footer from "../components/Footer/Footer"
 
 const RootLayout = () => {

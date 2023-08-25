@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import useMouse from '../hooks/useMouse';
+import useMouse from '../../hooks/useMouse';
 
-import banner from '../images/banner1.jpg'
-import product1 from '../images/product_1.png';
-import product2 from '../images/product_2.png';
-import product3 from '../images/product_3.png';
-import product4 from '../images/product_4.png';
-import product5 from '../images/product_5.png';
+import banner from '../../images/banner1.jpg'
+import product1 from '../../images/product_1.png';
+import product2 from '../../images/product_2.png';
+import product3 from '../../images/product_3.png';
+import product4 from '../../images/product_4.png';
+import product5 from '../../images/product_5.png';
 
 import classes from './HomePageContent.module.css';
 

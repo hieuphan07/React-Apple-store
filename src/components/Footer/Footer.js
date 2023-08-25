@@ -1,9 +1,9 @@
 import classes from './Footer.module.css'
 
-import data from './Footer.json'
+import DUMMY_FOOTER from '../../dummyData/dummyFooter.json'
 
 export function loader() {
-  const footerData = data;
+  const footerData = DUMMY_FOOTER;
   return footerData;
 }
 
