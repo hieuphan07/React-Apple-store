@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+
 import classes from './Popup.module.css'
 
 const Popup = ({ detail }) => {

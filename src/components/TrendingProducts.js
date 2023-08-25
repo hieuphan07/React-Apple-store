@@ -1,24 +1,9 @@
-import classes from './TrendingProducts.module.css';
-import useMouse from '../hooks/useMouse';
 import { useDispatch } from 'react-redux';
+import useMouse from '../hooks/useMouse';
 
-const DUMMY_EXTRA_INFO = [
-  {
-    name: 'FREE SHIPPING',
-    ship: 'Free Shipping Worldwide',
-    class: 'ship',
-  },
-  {
-    name: '24 X 7 SERVICE',
-    ship: 'Free Shipping Worldwide',
-    class: 'service',
-  },
-  {
-    name: 'FESTIVAL OFFER',
-    ship: 'Free Shipping Worldwide',
-    class: 'offer',
-  }
-]
+import DUMMY_EXTRA_INFO from '../dummyData/dunmmyExtraInfo.json'
+
+import classes from './TrendingProducts.module.css';
 
 const TrendingProducts = ({ trendingProducts }) => {
   const dispatch = useDispatch();
