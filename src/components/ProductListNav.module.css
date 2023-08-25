@@ -28,7 +28,7 @@
   color: #000 !important;
   font-size: 18px;
   padding: 7px 20px;
-  background-color: var(--green-light);
+  background-color: var(--main-grey);
 }
 
 .navbar > ul > li:first-child > span {

@@ -21,16 +21,20 @@ const NavBar = () => {
         <li>
           <ul className={classes.navbarRight}>
             <li>
-              <NavLink to='/cart'>Cart</NavLink>
+              <NavLink to='/cart'>
+                <i className="fa fa-shopping-cart"></i>
+                {' '}Cart</NavLink>
             </li>
             <li>
-              <NavLink to='/login'>Login</NavLink>
+              <NavLink to='/login'>
+                <i className="fa fa-user"></i>
+                {' '}Login</NavLink>
             </li>
           </ul>
         </li>
       </ul>
-    </nav>
-  </header>)
+    </nav >
+  </header >)
 }
 
 export default NavBar;

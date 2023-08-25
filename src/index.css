@@ -1,7 +1,7 @@
 :root {
+  --main-grey: #f4f5f9;
   --grey-light: #bbb4b4;
   --grey-dark: #837e7e;
-  --green-light: #dee9e3;
 }
 
 * {
