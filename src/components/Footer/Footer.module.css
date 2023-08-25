@@ -12,10 +12,10 @@
 .footer > ul {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  width: 80%;
+  justify-content: space-between;
   list-style: none;
   font-weight: 300;
+  width: 80%;
 }
 
 .footer ul li > ul {
