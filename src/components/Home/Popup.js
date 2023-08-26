@@ -15,22 +15,29 @@ const Popup = ({ detail }) => {
     currency: 'VND'
   });
 
-  return <div className={classes['popup-overlay']} onClick={(event) => {
-    if (event.target.className === 'Popup_popup-overlay__AIERW') { hideInfoHandler() }
-  }}>
-    <div className={classes.popup}>
-      <div className={classes.img}>
-        <img src={detail.img1}></img>
-      </div>
-      <div className={classes.info}>
-        <span className={classes.name}>{detail.name}</span>
-        <span className={classes.price}>{formatter.format(detail.price)}</span>
-        <span className={classes.detail}>{detail['short_desc']}</span>
-        <button>View Detail</button>
-        <span className={classes.close} onClick={hideInfoHandler}></span>
+  return (
+    <div className={classes['popup-overlay']} onClick={(event) => {
+      if (event.target.className === 'Popup_popup-overlay__qzNbS') { hideInfoHandler() }
+    }}>
+      <div className={classes.popup}>
+
+        {/* Product image */}
+        <div className={classes.img}>
+          <img src={detail.img1}></img>
+        </div>
+
+        {/* Product text */}
+        <div className={classes.info}>
+          <span className={classes.name}>{detail.name}</span>
+          <span className={classes.price}>{formatter.format(detail.price)}</span>
+          <span className={classes.detail}>{detail['short_desc']}</span>
+          <button>View Detail</button>
+          <span className={classes.close} onClick={hideInfoHandler}></span>
+        </div>
+
       </div>
     </div>
-  </div>
+  )
 }
 
 export default Popup;

@@ -54,7 +54,7 @@
 }
 
 .popup img {
-  height: 540px;
+  max-height: 540px;
 }
 
 .popup .info {
@@ -93,4 +93,22 @@
   font-style: italic;
   font-size: 1.1rem;
   cursor: pointer;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .popup {
+    flex-direction: column;
+  }
+
+  .popup img {
+    width: 100%;
+  }
+
+  .popup .info {
+    width: 100%;
+    max-height: 400px;
+    overflow: scroll;
+  }
 }
