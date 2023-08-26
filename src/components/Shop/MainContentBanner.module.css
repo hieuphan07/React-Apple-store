@@ -16,5 +16,6 @@
 }
 
 .banner select {
-  padding: 5px;
+  width: 140px;
+  padding: 3px;
 }
