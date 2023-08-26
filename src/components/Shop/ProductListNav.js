@@ -5,7 +5,7 @@ import DUMMY_CATEGORIES from '../../dummyData/dummyCategories.json'
 import classes from './ProductListNav.module.css'
 
 const ProductListNav = () => {
-  const [activeType, setActiveType] = useState();
+  const [activeType, setActiveType] = useState('All');
   const setActiveTypeHandler = (string) => {
     setActiveType(string)
   }

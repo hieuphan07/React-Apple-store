@@ -23,7 +23,7 @@
   font-style: italic;
 }
 
-.navbar a:active,
+.navbar a.active,
 .navbar a:hover {
   cursor: pointer;
   color: rgb(255, 213, 47)

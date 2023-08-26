@@ -8,10 +8,17 @@ const NavBar = () => {
         <li>
           <ul className={classes.navbarLeft}>
             <li>
-              <NavLink to='/'>Home</NavLink>
+              <NavLink
+                to='/'
+                className={({ isActive }) => isActive ? classes.active : undefined}
+                end>Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to='/shop'>Shop</NavLink>
+              <NavLink
+                to='/shop'
+                className={({ isActive }) => isActive ? classes.active : undefined}>Shop
+              </NavLink>
             </li>
           </ul>
         </li>
@@ -21,14 +28,20 @@ const NavBar = () => {
         <li>
           <ul className={classes.navbarRight}>
             <li>
-              <NavLink to='/cart'>
+              <NavLink
+                to='/cart'
+                className={({ isActive }) => isActive ? classes.active : undefined}>
                 <i className="fa fa-shopping-cart"></i>
-                {' '}Cart</NavLink>
+                {' '}Cart
+              </NavLink>
             </li>
             <li>
-              <NavLink to='/login'>
+              <NavLink
+                to='/login'
+                className={({ isActive }) => isActive ? classes.active : undefined}>
                 <i className="fa fa-user"></i>
-                {' '}Login</NavLink>
+                {' '}Login
+              </NavLink>
             </li>
           </ul>
         </li>
