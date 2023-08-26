@@ -8,18 +8,26 @@ export function loader() {
 }
 
 const Footer = ({ footerData }) => {
-  return <footer className={classes.footer}>
-    <ul>
-      {Object.keys(footerData).map(key => <li key={key}>
-        <h4>{key}</h4>
-        <ul>
-          {footerData[key].map(curr => <li key={curr.id}>
-            {curr.title}
-          </li>)}
-        </ul>
-      </li>)}
-    </ul>
-  </footer>
+  return (
+    <footer className={classes.footer}>
+      <ul>
+
+        {/* Main title */}
+        {Object.keys(footerData).map(key => <li key={key}>
+          <h4>{key}</h4>
+          <ul>
+
+            {/* Children content */}
+            {footerData[key].map(curr => <li key={curr.id}>
+              {curr.title}
+            </li>)}
+
+          </ul>
+        </li>)}
+
+      </ul>
+    </footer>
+  )
 }
 
 export default Footer;
