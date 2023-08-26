@@ -26,6 +26,7 @@
   font-size: 18px;
   padding: 7px 20px;
   background-color: var(--main-grey);
+  cursor: default !important;
 }
 
 .navbar > ul > li:first-child > span {
@@ -33,7 +34,7 @@
   background-color: #000;
 }
 
-.navbar span, .navbar a {
+.navbar span, .navbar p {
   color: var(--grey-light);
   text-decoration: none;
   display: block;
@@ -44,7 +45,8 @@
   cursor: pointer;
 }
 
-.navbar a:hover, .active {
-  color: #ffc107;
+.navbar p:hover, 
+.active {
+  color: #ffc107 !important;
 }
 
