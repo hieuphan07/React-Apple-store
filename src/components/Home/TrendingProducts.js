@@ -11,7 +11,6 @@ const TrendingProducts = ({ trendingProducts }) => {
   const showInfoHandler = (detail) => {
     dispatch({ type: "SHOW_INFO", payload: detail });
   };
-
   const [activeImage, mouseEnterHandler, mouseLeaveHandler] = useMouse();
 
   const formatter = new Intl.NumberFormat("de-DE", {
@@ -24,7 +23,9 @@ const TrendingProducts = ({ trendingProducts }) => {
       <div className={classes.shopListTitle}>
         <span>MADE THE HARD WAY</span>
         <span>TOP TRENDING PRODUCTS</span>
+
         {/* Item list */}
+
         <ul className={classes.shopListItem}>
           {trendingProducts.map((prod, index) => (
             <li key={prod._id.$oid}>
@@ -43,7 +44,9 @@ const TrendingProducts = ({ trendingProducts }) => {
             </li>
           ))}
         </ul>
+
         {/* Extra information */}
+
         <div className={classes.extraInfo}>
           {DUMMY_EXTRA_INFO.map((curr) => (
             <div
@@ -52,8 +55,8 @@ const TrendingProducts = ({ trendingProducts }) => {
                 curr.class === "ship"
                   ? classes.ship
                   : curr.class === "service"
-                  ? classes.service
-                  : classes.offer
+                    ? classes.service
+                    : classes.offer
               }
             >
               <span>{curr.name}</span>
@@ -61,7 +64,9 @@ const TrendingProducts = ({ trendingProducts }) => {
             </div>
           ))}
         </div>
+
         {/* Form footer */}
+
         <form className={classes.form}>
           <div>
             <h3>LET'S BE FRIENDS!</h3>
@@ -72,6 +77,7 @@ const TrendingProducts = ({ trendingProducts }) => {
             <button type="button">Subscrice</button>
           </div>
         </form>
+
       </div>
     </div>
   );

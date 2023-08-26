@@ -1,5 +1,8 @@
+/* Home container */
+
 .container {
   width: 100%;
+  max-width: var(--max-w);
   margin: 0 auto;
 }
 
@@ -20,7 +23,7 @@
   width: 20rem;
   position: absolute;
   transform: translate(0, -50%);
-  left: 50px;
+  left: 70px;
   top: 50%;
   gap: 20px;
 }
@@ -55,23 +58,21 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  max-width: var(--max-w);
-  margin: 0 auto;
+  margin-top: 70px;
 }
 .productTitle {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
 }
 
 .productTitle > span:first-child {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 
 .productTitle > span:nth-child(2) {
-  font-size: 2.2rem;
+  font-size: 1.5rem;
   font-style: italic;
 }
 
