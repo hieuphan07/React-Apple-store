@@ -1,4 +1,6 @@
 .shopList {
+  max-width: var(--max-w);
+  margin: 0 auto;
   width: 100%;
 }
 
@@ -50,7 +52,7 @@
   height: auto;
 }
 
-.extraInfo{
+.extraInfo {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -113,7 +115,6 @@
   outline: none;
 }
 
-
 .form button {
   padding: 21px;
   background-color: #222;
@@ -126,8 +127,9 @@
   touch-action: manipulation;
 }
 
-.form button:hover, form button:focus {
-  opacity: .75;
+.form button:hover,
+form button:focus {
+  opacity: 0.75;
 }
 
 .dimmed {
