@@ -1,0 +1,20 @@
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.banner input {
+  width: 350px;
+  padding: 10px;
+  border: 1px solid var(--grey-light);
+  font-size: 1.1rem;
+}
+
+.banner input:focus {
+  outline: none;
+}
+
+.banner select {
+  padding: 5px;
+}

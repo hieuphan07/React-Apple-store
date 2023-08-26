@@ -1,4 +1,4 @@
 .main-content {
-  padding: 20px;
   grid-area: content;
+  margin-left: 2rem;
 }
