@@ -2,10 +2,11 @@ import { createStore } from 'redux';
 
 const SHOW_INFO = 'SHOW_INFO';
 const HIDE_INFO = 'HIDE_INFO';
+const TYPE_SELECT = 'TYPE_SELECT';
 
 const initialState = {
   showInfo: false,
-  dataAPI: 'https://firebasestorage.googleapis.com/v0/b/funix-subtitle.appspot.com/o/Boutique_products.json?alt=media&token=dc67a5ea-e3e0-479e-9eaf-5e01bcd09c74'
+  type: 'All'
 }
 
 const popupReducer = (state = initialState, action) => {
@@ -14,6 +15,8 @@ const popupReducer = (state = initialState, action) => {
       return { ...state, showInfo: true, detail: action.payload }
     case HIDE_INFO:
       return { ...state, showInfo: false, detail: action.payload }
+    case TYPE_SELECT:
+      return { ...state, type: action.selectedType }
     default:
       return state
   }

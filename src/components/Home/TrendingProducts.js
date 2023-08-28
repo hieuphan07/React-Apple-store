@@ -34,12 +34,12 @@ const TrendingProducts = ({ trendingProducts }) => {
                 onMouseEnter={(ind) => mouseEnterHandler(index)}
                 onMouseLeave={mouseLeaveHandler}
                 onClick={() => showInfoHandler(prod)}
-                src={prod.img1}
+                src={prod['img1']}
                 alt={`products-${index}`}
               />
-              <span className={classes.itemName}>{prod.name}</span>
+              <span className={classes.itemName}>{prod['name']}</span>
               <span className={classes.itemPrice}>
-                {formatter.format(prod.price)}
+                {formatter.format(prod['price'])}
               </span>
             </li>
           ))}

@@ -9,7 +9,7 @@ const RootLayout = () => {
     <>
       <NavBar />
       <main>
-        {navigation.state === "loading" && <p>Loading...</p>}
+        {navigation.state === "loading" && <p style={{ textAlign: 'center', marginBottom: '10px' }}>Loading...</p>}
         <Outlet />
       </main>
       <Footer />

@@ -2,8 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import RootLayout from './pages/Root';
 import ErrorPage from "./pages/Error";
-import HomePage, { loader as productsLoader } from "./pages/Home";
-import ShopPage from "./pages/Shop";
+import HomePage, { loader as homeProductsLoader } from "./pages/Home";
+import ShopPage, { loader as shopProductsLoader } from "./pages/Shop";
 import DetailPage from "./pages/Detail";
 import CartPage from "./pages/Cart";
 import CheckoutPage from "./pages/Checkout";
@@ -19,11 +19,12 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
-        loader: productsLoader
+        loader: homeProductsLoader
       },
       {
         path: 'shop',
-        element: <ShopPage />
+        element: <ShopPage />,
+        loader: shopProductsLoader
       },
       { path: 'detail/:productId', element: <DetailPage /> },
       { path: 'cart', element: <CartPage /> },
