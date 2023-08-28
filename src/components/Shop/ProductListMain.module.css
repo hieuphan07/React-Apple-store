@@ -38,3 +38,10 @@
   font-size: 1.5rem;
 }
 
+/* Mobile */
+
+@media (max-width: 768px) {
+  .shopListItem {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
