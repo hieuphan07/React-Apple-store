@@ -8,13 +8,11 @@ import CartPage from "./pages/Cart";
 import CheckoutPage from "./pages/Checkout";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
-import { loader as footerLoader } from './components/Footer/Footer';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
-    loader: footerLoader,
     children: [
       {
         index: true,

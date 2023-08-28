@@ -2,10 +2,6 @@ import classes from './Footer.module.css'
 
 import DUMMY_FOOTER from '../../dummyData/dummyFooter.json'
 
-export function loader() {
-  const footerData = DUMMY_FOOTER;
-  return footerData;
-}
 
 const Footer = ({ footerData }) => {
   return (
@@ -13,12 +9,12 @@ const Footer = ({ footerData }) => {
       <ul>
 
         {/* Main title */}
-        {Object.keys(footerData).map(key => <li key={key}>
+        {Object.keys(DUMMY_FOOTER).map(key => <li key={key}>
           <h4>{key}</h4>
           <ul>
 
             {/* Children content */}
-            {footerData[key].map(curr => <li key={curr.id}>
+            {DUMMY_FOOTER[key].map(curr => <li key={curr.id}>
               {curr.title}
             </li>)}
 
