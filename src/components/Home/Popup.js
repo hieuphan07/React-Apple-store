@@ -4,8 +4,6 @@ import classes from './Popup.module.css'
 
 const Popup = ({ detail }) => {
   const dispatch = useDispatch()
-  const showInfo = useSelector(state => state.showInfo);
-
   const hideInfoHandler = () => {
     dispatch({ type: 'HIDE_INFO' })
   }
@@ -23,13 +21,13 @@ const Popup = ({ detail }) => {
 
         {/* Product image */}
         <div className={classes.img}>
-          <img src={detail.img1}></img>
+          <img src={detail['img1']}></img>
         </div>
 
         {/* Product text */}
         <div className={classes.info}>
-          <span className={classes.name}>{detail.name}</span>
-          <span className={classes.price}>{formatter.format(detail.price)}</span>
+          <span className={classes.name}>{detail['name']}</span>
+          <span className={classes.price}>{formatter.format(detail['price'])}</span>
           <span className={classes.detail}>{detail['short_desc']}</span>
           <button>View Detail</button>
           <span className={classes.close} onClick={hideInfoHandler}></span>
