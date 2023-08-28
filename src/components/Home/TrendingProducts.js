@@ -6,12 +6,12 @@ import DUMMY_EXTRA_INFO from "../../dummyData/dunmmyExtraInfo.json";
 import classes from "./TrendingProducts.module.css";
 
 const TrendingProducts = ({ trendingProducts }) => {
-  const dispatch = useDispatch();
+  const [activeImage, mouseEnterHandler, mouseLeaveHandler] = useMouse();
 
+  const dispatch = useDispatch();
   const showInfoHandler = (detail) => {
     dispatch({ type: "SHOW_INFO", payload: detail });
   };
-  const [activeImage, mouseEnterHandler, mouseLeaveHandler] = useMouse();
 
   const formatter = new Intl.NumberFormat("de-DE", {
     style: "currency",
