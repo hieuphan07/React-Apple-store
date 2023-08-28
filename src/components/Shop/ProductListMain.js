@@ -2,6 +2,7 @@ import { useLoaderData } from 'react-router-dom';
 import { useSelector, UseSelector } from 'react-redux/es/hooks/useSelector';
 
 import MainContentBanner from './MainContentBanner';
+import Indicator from './Indicator';
 
 import classes from './ProductListMain.module.css'
 
@@ -41,6 +42,8 @@ const ProductListMain = () => {
             </li>
           ))}
       </ul>
+
+      <Indicator />
     </div>)
 
 }
