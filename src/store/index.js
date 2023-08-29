@@ -6,10 +6,10 @@ const TYPE_SELECT = 'TYPE_SELECT';
 
 const initialState = {
   showInfo: false,
-  type: 'All'
+  type: 'All',
 }
 
-const popupReducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SHOW_INFO:
       return { ...state, showInfo: true, detail: action.payload }
@@ -22,6 +22,6 @@ const popupReducer = (state = initialState, action) => {
   }
 }
 
-const store = createStore(popupReducer);
+const store = createStore(reducer);
 
 export default store;

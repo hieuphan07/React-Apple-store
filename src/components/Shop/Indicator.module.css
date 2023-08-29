@@ -20,6 +20,7 @@
   width: 40px;
   height: 40px;
 }
+
 .indicator > span {
   width: 40px;
   height: 40px;
@@ -38,6 +39,7 @@ button:hover {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
+  height: 70vh;
 }
 
 .indicator-info > span {

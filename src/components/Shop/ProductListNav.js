@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DUMMY_CATEGORIES from '../../dummyData/dummyCategories.json'
@@ -6,12 +6,18 @@ import DUMMY_CATEGORIES from '../../dummyData/dummyCategories.json'
 import classes from './ProductListNav.module.css'
 
 const ProductListNav = () => {
+  const selectedType = useSelector(state => state.type);
   const dispatch = useDispatch()
-  const [activeType, setActiveType] = useState('All');
+  const [activeType, setActiveType] = useState(selectedType);
   const setActiveTypeHandler = (string) => {
     setActiveType(string);
     dispatch({ type: 'TYPE_SELECT', selectedType: string })
   };
+
+  useEffect(() => {
+    setActiveType("All")
+    dispatch({ type: 'TYPE_SELECT', selectedType: 'All' })
+  }, []);
 
   return (
     <nav className={classes.navbar}>
