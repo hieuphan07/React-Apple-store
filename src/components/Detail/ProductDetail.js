@@ -4,15 +4,16 @@ import { useSelector } from 'react-redux';
 
 import classes from './ProductDetail.module.css'
 
-const productColors = ['green', 'white', 'red', 'blue'];
+const localItem = localStorage.getItem('SELECTED_PRODUCTS');
+const SELECTED_PRODUCTS = JSON.parse(localItem);
 
 const ProductDetail = () => {
   const params = useParams();
   const id = params.productId;
 
   const products = useSelector(state => state.products);
-  const relatedProducts = products.filter(curr => curr._id.$oid !== id);
-  const [productById] = products.filter(curr => curr._id.$oid === id);
+  const relatedProducts = SELECTED_PRODUCTS.filter(curr => curr._id.$oid !== id);
+  const [productById] = SELECTED_PRODUCTS.filter(curr => curr._id.$oid === id);
   const longDesc = productById['long_desc'].split('•');
 
 
@@ -60,7 +61,7 @@ const ProductDetail = () => {
         <button>DESCRIPTION</button>
         <h3>PRODUCT DESCRIPTION</h3>
         <ul>
-          {longDesc.map(spec => <li>
+          {longDesc.map(spec => <li key={spec}>
             {spec}
           </li>)}
         </ul>

@@ -9,7 +9,7 @@ import classes from './ProductListMain.module.css'
 const ProductListMain = () => {
   const data = useLoaderData();
   const selectedType = useSelector(state => state.type);
-  const products = useSelector(state => state.products)
+  const selectedProducts = useSelector(state => state.products);
   const dispatch = useDispatch();
   let dataFiltered;
   const formatter = new Intl.NumberFormat("de-DE", {
@@ -27,6 +27,7 @@ const ProductListMain = () => {
   const selectProductHandler = (byCategory) => {
     const selectedProducts = data.filter(curr => curr.category === byCategory)
     dispatch({ type: 'PRODUCT_SELECT', selectedProds: selectedProducts });
+    localStorage.setItem('SELECTED_PRODUCTS', JSON.stringify(selectedProducts));
   }
 
   return (
