@@ -12,12 +12,14 @@
   margin: 20px 0;
 }
 
-.shopListItem li {
+.shopListItem li a {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 10px;
+  text-decoration: none;
+  color: #000;
 }
 
 .shopListItem img {

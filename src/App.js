@@ -23,10 +23,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'shop',
-        element: <ShopPage />,
-        loader: shopProductsLoader
+        children: [
+          {
+            index: true,
+            element: <ShopPage />,
+            loader: shopProductsLoader,
+          },
+          { path: ':productId', element: <DetailPage /> },
+        ]
       },
-      { path: 'detail/:productId', element: <DetailPage /> },
       { path: 'cart', element: <CartPage /> },
       { path: 'checkout', element: <CheckoutPage /> },
       { path: 'login', element: <LoginPage /> },

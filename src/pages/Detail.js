@@ -1,6 +1,8 @@
+import ProductDetail from '../components/Detail/ProductDetail';
+
 const DetailPage = () => {
   return <div>
-    <h1>Detail Page</h1>
+    <ProductDetail />
   </div>
 }
 
