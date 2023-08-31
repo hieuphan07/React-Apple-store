@@ -1,5 +1,6 @@
 .signin {
   background-image: url(../../images/banner1.jpg);
+  background-size: contain;
   height: 100vh;
   position: relative;
 }
@@ -48,7 +49,7 @@
   border-bottom: 1px solid var(--grey-light);
 }
 
-.wrapper form  button {
+.wrapper form button {
   background-color: #333;
   color: #fff;
   padding: 1rem;
