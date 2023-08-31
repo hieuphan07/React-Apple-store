@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import BannerNavigation from '../../components/BannerNavigation';
@@ -31,6 +31,10 @@ const ProductDetail = () => {
   for (let i = 1; i <= 4; i++) {
     imageList.push(productById[`img${i}`]);
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   return (
     <>
