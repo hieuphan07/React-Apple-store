@@ -1,13 +1,13 @@
 import { Outlet, useNavigation } from "react-router-dom"
 
-import NavBar from "../MainNavigation/NavBar"
+import MainNavigation from "../MainNavigation/MainNavigation"
 import Footer from "../components/Footer/Footer"
 
 const RootLayout = () => {
   const navigation = useNavigation()
   return (
     <>
-      <NavBar />
+      <MainNavigation />
       <main>
         {navigation.state === "loading" && <p style={{ textAlign: 'center', marginBottom: '10px' }}>Loading...</p>}
         <Outlet />
