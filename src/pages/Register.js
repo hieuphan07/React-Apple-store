@@ -1,6 +1,8 @@
+import Signup from "../components/Register/Signup";
+
 const RegisterPage = () => {
   return <div>
-    <h1>Register Page</h1>
+    <Signup />
   </div>
 }
 
