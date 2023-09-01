@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useInput from '../../hooks/useInput';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import classes from './Signup.module.css';
 
@@ -12,6 +12,9 @@ const isPassword = (value) => value.length >= 8 && /\d/.test(value) && /[a-zA-Z]
 const isPhone = (value) => phonePattern.test(value);
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const users = JSON.parse(localStorage.getItem('USERS')) || [];
+
   const {
     value: fullNameValue,
     isValid: fullNameIsValid,
@@ -62,6 +65,18 @@ const Signup = () => {
 
     console.log('Submitted!');
     console.log(fullNameValue, emailValue, passwordValue, phoneValue);
+
+    const user = {
+      name: fullNameValue,
+      email: emailValue,
+      password: passwordValue,
+      phone: phoneValue
+    };
+    users.push(user)
+    localStorage.setItem("USERS", JSON.stringify(users));
+
+    alert('Successfully registered!')
+    navigate('/login');
 
     resetFullName();
     resetEmail();
