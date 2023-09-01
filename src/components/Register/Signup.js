@@ -98,11 +98,15 @@ const Signup = () => {
           <input
             type='tel'
             placeholder='Phone'
-            pattern='[0-9]{2}[-][0-9]{3}[-][0-9]{3}[-][0-9]{3}'
+            pattern='[0-9]{2}-[0-9]{3}-[0-9]{3}-[0-9]{3}'
             id='phone'
             value={phoneValue}
             onChange={phoneChangeHandler}
             onBlur={phoneBlurHandler} />
+          {fullNameHasError && <p className={classes['error-text']}>Please enter a full name</p>}
+          {emailHasError && <p className={classes['error-text']}>Please enter a valid email</p>}
+          {passwordHasError && <p className={classes['error-text']}>Please enter a valid password</p>}
+          {phoneHasError && <p className={classes['error-text']}>Please enter a valid phone number. Pattern: "00-123-456-789"</p>}
           <button>SIGN UP</button>
         </form>
         <p>Login? <Link to='/login'>Click</Link></p>

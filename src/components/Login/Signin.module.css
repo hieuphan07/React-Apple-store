@@ -8,13 +8,14 @@
 .wrapper {
   position: absolute;
   background-color: #fff;
-  height: 550px;
+  height: fit-content;
   width: 450px;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding-bottom: 2rem;
 }
 
 .wrapper form {
