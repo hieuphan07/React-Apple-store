@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import useInput from '../../hooks/useInput';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -48,6 +48,8 @@ const Signup = () => {
     reset: resetPhone
   } = useInput(isPhone);
 
+  const [isDuplicate, setIsDuplicate] = useState(false);
+
   let formIsValid = false;
 
   if (fullNameIsValid && emailIsValid && passwordIsValid && phoneIsValid) {
@@ -62,6 +64,12 @@ const Signup = () => {
       console.log(fullNameIsValid, emailIsValid, passwordIsValid, phoneIsValid);
       return;
     };
+
+    const validUser = users.find(user => user.email === emailValue)
+    if (validUser) {
+      setIsDuplicate(true);
+      return;
+    }
 
     console.log('Submitted!');
     console.log(fullNameValue, emailValue, passwordValue, phoneValue);
@@ -122,6 +130,7 @@ const Signup = () => {
           {emailHasError && <p className={classes['error-text']}>Please enter a valid email</p>}
           {passwordHasError && <p className={classes['error-text']}>Please enter a valid password</p>}
           {phoneHasError && <p className={classes['error-text']}>Please enter a valid phone number. Pattern: "00-123-456-789"</p>}
+          {isDuplicate && <p className={classes['error-text']}>Email already registered</p>}
           <button>SIGN UP</button>
         </form>
         <p>Login? <Link to='/login'>Click</Link></p>
