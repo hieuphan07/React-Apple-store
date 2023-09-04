@@ -1,10 +1,14 @@
 import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
 import classes from './MainNavigation.module.css';
 
 const NavBar = () => {
-  const loginedUser = JSON.parse(localStorage.getItem('LOGINED_USER')) || undefined;
+  const loginedUser = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
   const logoutHandler = () => {
-    localStorage.removeItem('LOGINED_USER');
+    dispatch({ type: 'LOGOUT' })
   }
 
   return (
@@ -47,9 +51,11 @@ const NavBar = () => {
                   className={({ isActive }) => isActive ? classes.active : undefined}>
                   <i className="fa fa-user"></i>
                   {' '}{loginedUser ? loginedUser.name : 'Login'}
-                  {loginedUser && <button onClick={logoutHandler}>(Logout)</button>}
                 </NavLink>
               </li>
+              {loginedUser ? <li>
+                <button onClick={logoutHandler}>(Logout)</button>
+              </li> : undefined}
             </ul>
           </li>
         </ul>

@@ -4,17 +4,17 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import classes from './Signup.module.css';
 
-const phonePattern = /^\d{2}[-]\d{3}[-]\d{3}[-]\d{3}$/;
-
 const isNotEmpty = (value) => value.trim() !== "";
 const isEmail = (value) => value.includes("@");
 const isPassword = (value) => value.length >= 8 && /\d/.test(value) && /[a-zA-Z]/.test(value);
 const isPhone = (value) => phonePattern.test(value);
+const phonePattern = /^\d{2}[-]\d{3}[-]\d{3}[-]\d{3}$/;
 
 const Signup = () => {
   const navigate = useNavigate();
   const users = JSON.parse(localStorage.getItem('USERS')) || [];
 
+  // Declare variables
   const {
     value: fullNameValue,
     isValid: fullNameIsValid,
@@ -49,7 +49,6 @@ const Signup = () => {
   } = useInput(isPhone);
 
   const [isDuplicate, setIsDuplicate] = useState(false);
-
   let formIsValid = false;
 
   if (fullNameIsValid && emailIsValid && passwordIsValid && phoneIsValid) {
@@ -59,11 +58,7 @@ const Signup = () => {
   const submitHanlder = (e) => {
     e.preventDefault();
 
-    if (!formIsValid) {
-      console.log('Something went wrong!')
-      console.log(fullNameIsValid, emailIsValid, passwordIsValid, phoneIsValid);
-      return;
-    };
+    if (!formIsValid) return;
 
     const validUser = users.find(user => user.email === emailValue)
     if (validUser) {
@@ -97,6 +92,7 @@ const Signup = () => {
       <div className={classes.wrapper}>
         <form onSubmit={submitHanlder}>
           <h3>Sign Up</h3>
+          {/* Full name */}
           <input
             type='text'
             placeholder='Full Name'
@@ -104,6 +100,7 @@ const Signup = () => {
             value={fullNameValue}
             onChange={fullNameChangeHandler}
             onBlur={fullNameBlurHandler} />
+          {/* Email */}
           <input
             type='email'
             placeholder='Email'
@@ -111,6 +108,7 @@ const Signup = () => {
             value={emailValue}
             onChange={emailChangeHandler}
             onBlur={emailBlurHandler} />
+          {/* Password */}
           <input
             type='password'
             placeholder='Password'
@@ -118,6 +116,7 @@ const Signup = () => {
             value={passwordValue}
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler} />
+          {/* Phone */}
           <input
             type='tel'
             placeholder='Phone'
@@ -126,6 +125,7 @@ const Signup = () => {
             value={phoneValue}
             onChange={phoneChangeHandler}
             onBlur={phoneBlurHandler} />
+          {/* Warning */}
           {fullNameHasError && <p className={classes['error-text']}>Please enter a full name</p>}
           {emailHasError && <p className={classes['error-text']}>Please enter a valid email</p>}
           {passwordHasError && <p className={classes['error-text']}>Please enter a valid password</p>}

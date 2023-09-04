@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useInput from '../../hooks/useInput';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import classes from './Signin.module.css';
 
 const isNotEmpty = (value) => value.trim() !== "";
 
 const Signin = () => {
+  const dispatch = useDispatch();
+  const loginedUser = useSelector(state => state.user);
+
   const {
     value: emailValue,
     isValid: emailIsValid,
@@ -24,14 +28,13 @@ const Signin = () => {
     reset: resetPassword
   } = useInput(isNotEmpty);
 
-  const [loginStatus, setLoginStatus] = useState(false);
-  const [username, setUsername] = useState('');
-
   let formIsValid = false;
 
   if (emailIsValid && passwordIsValid) {
     formIsValid = true;
   }
+
+  // LOGIN
 
   const loginHandler = (e) => {
     e.preventDefault();
@@ -42,30 +45,29 @@ const Signin = () => {
     const user = registeredUsers.find(user => user.email === emailValue);
 
     if (user && user.password === passwordValue) {
-      setLoginStatus(true);
-      setUsername(user.name)
       const loginedUser = {
         name: user.name,
         email: user.email
       }
-      localStorage.setItem('LOGINED_USER', JSON.stringify(loginedUser))
+      dispatch({ type: 'LOGIN', user: loginedUser })
     } else {
-      setLoginStatus(false);
+      // ...
     }
 
     resetEmail();
     resetPassword();
   }
 
+  // LOGOUT
+
   const logoutHandler = () => {
-    localStorage.removeItem('LOGINED_USER');
-    setLoginStatus(false);
-    setUsername('')
+    dispatch({ type: 'LOGOUT' });
   }
+
   return (
     <div className={classes.signin}>
       <div className={classes.wrapper}>
-        {!loginStatus && <form onSubmit={loginHandler}>
+        {!loginedUser && <form onSubmit={loginHandler}>
           <h3>Sign In</h3>
           <input
             type='email'
@@ -85,9 +87,9 @@ const Signin = () => {
           {passwordHasError && <p className={classes['error-text']}>Please enter a password</p>}
           <button>SIGN IN</button>
         </form>}
-        {!loginStatus && <p>Create an account? <Link to='/register'>Sign up</Link></p>}
-        {loginStatus && <h1>{`Welcome ${username}!`}</h1>}
-        {loginStatus && <button className={classes.logout} onClick={logoutHandler}>Log out</button>}
+        {!loginedUser && <p>Create an account? <Link to='/register'>Sign up</Link></p>}
+        {loginedUser && <h1>{`Welcome ${loginedUser.name}!`}</h1>}
+        {loginedUser && <button className={classes.logout} onClick={logoutHandler}>Log out</button>}
       </div>
     </div>
   )
