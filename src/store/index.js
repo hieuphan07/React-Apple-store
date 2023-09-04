@@ -25,8 +25,8 @@ const reducer = (state = initialState, action) => {
     case PRODUCT_SELECT:
       return { ...state, products: action.selectedProds }
     case LOGIN:
-      const user = localStorage.setItem('LOGINED_USER', JSON.stringify(action.user))
-      return { ...state, user: user }
+      localStorage.setItem('LOGINED_USER', JSON.stringify(action.user))
+      return { ...state, user: JSON.parse(localStorage.getItem('LOGINED_USER')) }
     case LOGOUT:
       localStorage.removeItem('LOGINED_USER')
       return { ...state, user: null }

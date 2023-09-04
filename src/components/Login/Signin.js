@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useInput from '../../hooks/useInput';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,6 +28,7 @@ const Signin = () => {
     reset: resetPassword
   } = useInput(isNotEmpty);
 
+  const [isCorrect, setIsCorrect] = useState(true);
   let formIsValid = false;
 
   if (emailIsValid && passwordIsValid) {
@@ -51,7 +52,7 @@ const Signin = () => {
       }
       dispatch({ type: 'LOGIN', user: loginedUser })
     } else {
-      // ...
+      setIsCorrect(false)
     }
 
     resetEmail();
@@ -62,6 +63,10 @@ const Signin = () => {
 
   const logoutHandler = () => {
     dispatch({ type: 'LOGOUT' });
+  }
+
+  const focusHandler = () => {
+    setIsCorrect(true);
   }
 
   return (
@@ -75,16 +80,19 @@ const Signin = () => {
             id='email'
             value={emailValue}
             onChange={emailChangeHandler}
-            onBlur={emailBlurHandler} />
+            onBlur={emailBlurHandler}
+            onFocus={focusHandler} />
           <input
             type='password'
             placeholder='Password'
             id='password'
             value={passwordValue}
             onChange={passwordChangeHandler}
-            onBlur={passwordBlurHandler} />
+            onBlur={passwordBlurHandler}
+            onFocus={focusHandler} />
           {emailHasError && <p className={classes['error-text']}>Please enter a email</p>}
           {passwordHasError && <p className={classes['error-text']}>Please enter a password</p>}
+          {!isCorrect && <p className={classes['error-text']}>Your email or password was incorrect</p>}
           <button>SIGN IN</button>
         </form>}
         {!loginedUser && <p>Create an account? <Link to='/register'>Sign up</Link></p>}
