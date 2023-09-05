@@ -1,8 +1,8 @@
-import BannerNavigation from '../components/BannerNavigation';
+import ShoppingCart from '../components/Cart/ShoppingCart';
 
 const CartPage = () => {
   return <div>
-    <BannerNavigation title='Cart' navigation='Cart' />
+    <ShoppingCart />
   </div>
 }
 

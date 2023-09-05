@@ -6,6 +6,9 @@ const TYPE_SELECT = 'TYPE_SELECT';
 const PRODUCT_SELECT = 'PRODUCT_SELECT';
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
+const ADD_CART = 'ADD_CART';
+const UPDATE_CART = 'UPDATE_CART';
+const DELETE_CART = 'DELETE_CART';
 
 const initialState = {
   showInfo: false,
@@ -30,6 +33,12 @@ const reducer = (state = initialState, action) => {
     case LOGOUT:
       localStorage.removeItem('LOGINED_USER')
       return { ...state, user: null }
+    case ADD_CART:
+      return
+    case UPDATE_CART:
+      return
+    case DELETE_CART:
+      return
     default:
       return state
   }
