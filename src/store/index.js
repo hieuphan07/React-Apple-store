@@ -72,20 +72,14 @@ const reducer = (state = initialState, action) => {
         updatedCartItems = [...state.cartItems];
         updatedCartItems[existingItemIndex] = updatedExistingItem;
         updatedTotal = updatedCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
-        return {
-          ...state,
-          cartItems: updatedCartItems,
-          total: updatedTotal
-        };
+
+        return { ...state, artItems: updatedCartItems, total: updatedTotal };
       } else {
         const amount = inputQuantity * addedItem.price;
         updatedCartItems = [...state.cartItems, { ...addedItem, quantity: inputQuantity, amount: amount }];
         updatedTotal = updatedCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
-        return {
-          ...state,
-          cartItems: updatedCartItems,
-          total: updatedTotal
-        }
+
+        return { ...state, cartItems: updatedCartItems, total: updatedTotal }
       }
     case UPDATE_CART:
       return state
