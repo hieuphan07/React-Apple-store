@@ -11,7 +11,7 @@ import classes from './ShoppingCart.module.css';
 
 const ShoppingCart = () => {
   const cartItems = useSelector(state => state.cartItems);
-  console.log(cartItems);
+
   const itemsList = cartItems.map(item =>
     <Item
       key={item._id.$oid}

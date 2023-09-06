@@ -5,11 +5,14 @@ import classes from './MainNavigation.module.css';
 
 const NavBar = () => {
   const loginedUser = useSelector(state => state.user);
+  const cartItems = useSelector(state => state.cartItems);
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
     dispatch({ type: 'LOGOUT' })
   }
+
+  const numberItems = cartItems.length;
 
   return (
     <header className={classes['main-header']}>
@@ -42,7 +45,7 @@ const NavBar = () => {
                   to='/cart'
                   className={({ isActive }) => isActive ? classes.active : undefined}>
                   <i className="fa fa-shopping-cart"></i>
-                  {' '}Cart
+                  {' '}Cart{' '}{`(${numberItems})`}
                 </NavLink>
               </li>
               <li>
