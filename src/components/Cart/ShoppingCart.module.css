@@ -1,4 +1,21 @@
 .cart {
   max-width: var(--max-w);
   margin: 0 auto;
+  margin-bottom: 2rem;
 }
+
+.cart h3 {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.cart table {
+  width: 75%;
+  border-collapse: collapse;
+}
+
+thead, tfoot {
+  background-color: var(--main-grey);
+}
+
+
