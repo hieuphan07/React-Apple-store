@@ -6,6 +6,7 @@ import BannerNavigation from '../../components/BannerNavigation';
 import Thead from './ItemTable/Thead';
 import Tfoot from './ItemTable/Tfoot';
 import Item from './Item';
+import CartTotal from './CartTotal';
 
 import classes from './ShoppingCart.module.css';
 
@@ -52,6 +53,7 @@ const ShoppingCart = () => {
           <Tfoot />
         </tfoot>
       </table>
+      <CartTotal />
     </div>
   )
 }
