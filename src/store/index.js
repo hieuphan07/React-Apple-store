@@ -14,7 +14,9 @@ const initialState = {
   showInfo: false,
   type: 'All',
   products: [],
-  user: JSON.parse(localStorage.getItem('LOGINED_USER')) || null
+  user: JSON.parse(localStorage.getItem('LOGINED_USER')) || null,
+  cartItems: [],
+  total: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -34,7 +36,18 @@ const reducer = (state = initialState, action) => {
       localStorage.removeItem('LOGINED_USER')
       return { ...state, user: null }
     case ADD_CART:
-      return
+      const addedItem = action.cartItem;
+      let updatedcartItems;
+      let updatedTotal;
+      if (state.cartItems.find(curr => curr.name === addedItem.name)) {
+        return state;
+      } else {
+        const quantity = action.quantity;
+        const amount = quantity * addedItem.price;
+        updatedcartItems = [...state.cartItems, { ...addedItem, quantity: quantity, amount: amount }];
+        updatedTotal = updatedcartItems.reduce((total, curr) => total + curr.amount, 0);
+      }
+      return { ...state, cartItems: updatedcartItems, total: updatedTotal }
     case UPDATE_CART:
       return
     case DELETE_CART:

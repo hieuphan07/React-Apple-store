@@ -7,7 +7,7 @@ const formatter = new Intl.NumberFormat("de-DE", {
   currency: "VND",
 });
 
-const Item = ({ image, name, price, quantity }) => {
+const Item = ({ image, name, price, quantity, amount }) => {
   return (
     <tr className={classes.item}>
       <td
@@ -33,7 +33,7 @@ const Item = ({ image, name, price, quantity }) => {
       <td
         align='center'
         className={classes.amount}>
-        {formatter.format(price)}
+        {formatter.format(amount)}
       </td>
       <td
         align='center'

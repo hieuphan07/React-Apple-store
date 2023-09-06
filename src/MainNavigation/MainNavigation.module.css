@@ -39,5 +39,12 @@ button {
   font-size: 1.2rem;
   font-style: italic;
   margin-left: 5px;
+  cursor: pointer;
+}
+
+.navbar button:hover,
+.navbar button:active {
+  background-color: transparent !important;
+  color: rgb(255, 213, 47) !important;
 }
 

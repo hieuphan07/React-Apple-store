@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import BannerNavigation from '../../components/BannerNavigation';
 
@@ -11,6 +12,7 @@ const formatter = new Intl.NumberFormat("de-DE", {
 });
 
 const ProductDetail = () => {
+  const inputRef = useRef();
   const localItem = localStorage.getItem('SELECTED_PRODUCTS');
   const SELECTED_PRODUCTS = JSON.parse(localItem);
 
@@ -30,6 +32,11 @@ const ProductDetail = () => {
   const imageList = [];
   for (let i = 1; i <= 4; i++) {
     imageList.push(productById[`img${i}`]);
+  }
+
+  const dispatch = useDispatch();
+  const addCartHandler = () => {
+    dispatch({ type: 'ADD_CART', cartItem: productById, quantity: inputRef.current.value })
   }
 
   useEffect(() => {
@@ -65,8 +72,8 @@ const ProductDetail = () => {
             <span className={classes.shortDesc}>{productById['short_desc']}</span>
             <span className={classes.category}><strong>CATEGORY: </strong>{productById.category}</span>
             <div className={classes.quantity}>
-              <input type='number' min='1' placeholder='QUANTITY'></input>
-              <button>Add to cart</button>
+              <input type='number' min='1' defaultValue='1' placeholder='QUANTITY' ref={inputRef}></input>
+              <button onClick={addCartHandler}>Add to cart</button>
             </div>
           </div>
         </div>
