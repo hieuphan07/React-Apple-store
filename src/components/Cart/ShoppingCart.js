@@ -42,18 +42,20 @@ const ShoppingCart = () => {
     <div className={classes.cart}>
       <BannerNavigation title='Cart' navigation='Cart' />
       <h3>SHOPPING CART</h3>
-      <table>
-        <thead>
-          <Thead />
-        </thead>
-        <tbody>
-          {items}
-        </tbody>
-        <tfoot>
-          <Tfoot />
-        </tfoot>
-      </table>
-      <CartTotal />
+      <div className={classes.wrapper}>
+        <table>
+          <thead>
+            <Thead />
+          </thead>
+          <tbody>
+            {items}
+          </tbody>
+          <tfoot>
+            <Tfoot />
+          </tfoot>
+        </table>
+        <CartTotal />
+      </div>
     </div>
   )
 }

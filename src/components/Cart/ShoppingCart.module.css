@@ -9,8 +9,13 @@
   margin-bottom: 1rem;
 }
 
+.cart .wrapper {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 1.5rem;
+}
+
 .cart table {
-  width: 75%;
   border-collapse: collapse;
 }
 
