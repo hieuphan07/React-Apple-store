@@ -16,7 +16,7 @@ const Item = ({ image, name, price, quantity, amount }) => {
         <img src={image} />
       </td>
       <td
-        align='center'
+        align='left'
         className={classes.name}>{name}
       </td>
       <td

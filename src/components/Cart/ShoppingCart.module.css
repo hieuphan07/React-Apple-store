@@ -23,4 +23,10 @@ thead, tfoot {
   background-color: var(--main-grey);
 }
 
+@media(max-width: 768px) {
+  .cart .wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
 
