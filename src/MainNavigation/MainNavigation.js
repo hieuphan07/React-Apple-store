@@ -12,7 +12,7 @@ const NavBar = () => {
     dispatch({ type: 'LOGOUT' })
   }
 
-  const numberItems = cartItems.length;
+  const numberItems = cartItems.reduce((sum, curr) => sum + Number(curr.quantity), 0);
 
   return (
     <header className={classes['main-header']}>

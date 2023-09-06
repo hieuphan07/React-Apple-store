@@ -8,8 +8,7 @@ import classes from './ProductListMain.module.css'
 
 const ProductListMain = () => {
   const data = useLoaderData();
-  const selectedType = useSelector(state => state.type);
-  const selectedProducts = useSelector(state => state.products);
+  const selectedType = useSelector(state => state.category);
   const dispatch = useDispatch();
   let dataFiltered;
   const formatter = new Intl.NumberFormat("de-DE", {

@@ -12,7 +12,7 @@ const DELETE_CART = 'DELETE_CART';
 
 const initialState = {
   showInfo: false,
-  type: 'All',
+  category: 'All',
   products: [],
   user: JSON.parse(localStorage.getItem('LOGINED_USER')) || null,
   cartItems: [],
@@ -22,36 +22,75 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SHOW_INFO:
-      return { ...state, showInfo: true, detail: action.payload }
+      return {
+        ...state,
+        showInfo: true,
+        detail: action.payload
+      }
     case HIDE_INFO:
-      return { ...state, showInfo: false, detail: action.payload }
+      return {
+        ...state,
+        showInfo: false,
+        detail: action.payload
+      }
     case TYPE_SELECT:
-      return { ...state, type: action.selectedType }
+      return {
+        ...state,
+        category: action.selectedType
+      }
     case PRODUCT_SELECT:
-      return { ...state, products: action.selectedProds }
+      return {
+        ...state,
+        products: action.selectedProds
+      }
     case LOGIN:
       localStorage.setItem('LOGINED_USER', JSON.stringify(action.user))
-      return { ...state, user: JSON.parse(localStorage.getItem('LOGINED_USER')) }
+      return {
+        ...state,
+        user: JSON.parse(localStorage.getItem('LOGINED_USER'))
+      }
     case LOGOUT:
       localStorage.removeItem('LOGINED_USER')
-      return { ...state, user: null }
+      return {
+        ...state,
+        user: null
+      }
     case ADD_CART:
       const addedItem = action.cartItem;
-      let updatedcartItems;
+      const inputQuantity = action.quantity;
+
+      const existingItemIndex = state.cartItems.findIndex(curr => curr._id.$oid === addedItem._id.$oid);
+      const existingItem = state.cartItems[existingItemIndex];
+
+      let updatedCartItems;
       let updatedTotal;
-      if (state.cartItems.find(curr => curr.name === addedItem.name)) {
-        return state;
+
+      if (existingItem) {
+        const updatedQuantity = Number(existingItem.quantity) + Number(inputQuantity);
+        const updatedAmount = updatedQuantity * existingItem.price;
+        const updatedExistingItem = { ...existingItem, quantity: updatedQuantity, amount: updatedAmount };
+        updatedCartItems = [...state.cartItems];
+        updatedCartItems[existingItemIndex] = updatedExistingItem;
+        updatedTotal = updatedCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
+        return {
+          ...state,
+          cartItems: updatedCartItems,
+          total: updatedTotal
+        };
       } else {
-        const quantity = action.quantity;
-        const amount = quantity * addedItem.price;
-        updatedcartItems = [...state.cartItems, { ...addedItem, quantity: quantity, amount: amount }];
-        updatedTotal = updatedcartItems.reduce((total, curr) => total + curr.amount, 0);
+        const amount = inputQuantity * addedItem.price;
+        updatedCartItems = [...state.cartItems, { ...addedItem, quantity: inputQuantity, amount: amount }];
+        updatedTotal = updatedCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
+        return {
+          ...state,
+          cartItems: updatedCartItems,
+          total: updatedTotal
+        }
       }
-      return { ...state, cartItems: updatedcartItems, total: updatedTotal }
     case UPDATE_CART:
-      return
+      return state
     case DELETE_CART:
-      return
+      return state
     default:
       return state
   }
