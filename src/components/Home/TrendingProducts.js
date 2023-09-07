@@ -31,7 +31,7 @@ const TrendingProducts = ({ trendingProducts }) => {
             <li key={prod._id.$oid}>
               <img
                 className={activeImage === index ? classes.dimmed : undefined}
-                onMouseEnter={(ind) => mouseEnterHandler(index)}
+                onMouseEnter={() => mouseEnterHandler(index)}
                 onMouseLeave={mouseLeaveHandler}
                 onClick={() => showInfoHandler(prod)}
                 src={prod['img1']}
