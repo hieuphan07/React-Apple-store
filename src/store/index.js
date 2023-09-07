@@ -82,9 +82,52 @@ const reducer = (state = initialState, action) => {
         return { ...state, cartItems: updatedCartItems, total: updatedTotal }
       }
     case UPDATE_CART:
-      return state
+      const changeQuantity = action.changeQuantity;
+      const inputUpdatingItem = action.cartItem;
+
+      const updatingItemIndex = state.cartItems.findIndex(curr => curr._id.$oid === inputUpdatingItem._id.$oid);
+      const updatingItem = state.cartItems[updatingItemIndex];
+
+      let updatingCartItems;
+      let updatingTotal;
+
+      if (changeQuantity === 'ADD') {
+        const updatingQuantity = Number(updatingItem.quantity) + 1;
+        const updatingAmount = updatingQuantity * updatingItem.price;
+        const updatingExistingItem = { ...updatingItem, quantity: updatingQuantity, amount: updatingAmount };
+        updatingCartItems = [...state.cartItems];
+        updatingCartItems[updatingItemIndex] = updatingExistingItem;
+        updatingTotal = updatingCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
+
+        return { ...state, cartItems: updatingCartItems, total: updatingTotal };
+      } else {
+        const updatingQuantity = Number(updatingItem.quantity) - 1;
+        if (updatingQuantity > 0) {
+          const updatingAmount = updatingQuantity * updatingItem.price;
+          const updatingExistingItem = { ...updatingItem, quantity: updatingQuantity, amount: updatingAmount };
+          updatingCartItems = [...state.cartItems];
+          updatingCartItems[updatingItemIndex] = updatingExistingItem;
+          updatingTotal = updatingCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
+
+          return { ...state, cartItems: updatingCartItems, total: updatingTotal };
+        } else {
+          updatingCartItems = [...state.cartItems];
+          updatingCartItems.splice(updatingItemIndex, 1);
+          updatingTotal = updatingCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
+
+          return { ...state, cartItems: updatingCartItems, total: updatingTotal };
+        }
+      }
     case DELETE_CART:
-      return state
+      const inputRemovingItem = action.cartItem;
+      const removingItemIndex = state.cartItems.findIndex(curr => curr._id.$oid === inputRemovingItem._id.$oid);
+      let removingCartItems = [...state.cartItems];
+
+      removingCartItems.splice(removingItemIndex, 1);
+
+      const removingTotal = removingCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
+
+      return { ...state, cartItems: removingCartItems, total: removingTotal };
     default:
       return state
   }

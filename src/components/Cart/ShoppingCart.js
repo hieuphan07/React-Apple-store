@@ -20,6 +20,7 @@ const ShoppingCart = () => {
       price={item.price}
       quantity={item.quantity}
       amount={item.amount}
+      item={item}
     />
   )
   return (

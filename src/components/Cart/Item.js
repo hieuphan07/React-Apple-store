@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import classes from './Item.module.css';
 
@@ -7,7 +8,18 @@ const formatter = new Intl.NumberFormat("de-DE", {
   currency: "VND",
 });
 
-const Item = ({ image, name, price, quantity, amount }) => {
+const Item = ({ image, name, price, quantity, amount, item }) => {
+  const dispatch = useDispatch();
+  const addHandler = () => {
+    dispatch({ type: 'UPDATE_CART', changeQuantity: 'ADD', cartItem: item })
+  }
+  const removeHandler = () => {
+    dispatch({ type: 'UPDATE_CART', changeQuantity: 'REMOVE', cartItem: item })
+  }
+  const deleteHandler = () => {
+    dispatch({ type: 'DELETE_CART', cartItem: item })
+  }
+
   return (
     <tr className={classes.item}>
       <td
@@ -26,9 +38,9 @@ const Item = ({ image, name, price, quantity, amount }) => {
       <td
         align='center'
         className={classes.quantity}>
-        <i className='fa fa-caret-left' />
+        <i className='fa fa-caret-left' onClick={removeHandler} />
         <span>{quantity}</span>
-        <i className='fa fa-caret-right' />
+        <i className='fa fa-caret-right' onClick={addHandler} />
       </td>
       <td
         align='center'
@@ -38,7 +50,7 @@ const Item = ({ image, name, price, quantity, amount }) => {
       <td
         align='center'
         className={classes.remove}>
-        <i className='fa fa-trash-o' />
+        <i className='fa fa-trash-o' onClick={deleteHandler} />
       </td>
     </tr>
   )
