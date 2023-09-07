@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useInput from '../../hooks/useInput';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -15,9 +15,12 @@ const isEmail = (value) => value.includes("@");
 const isPhone = (value) => phonePattern.test(value);
 
 const CheckoutContent = () => {
+  const [isSubmit, setIsSubmit] = useState(false);
+
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cartItems);
   const total = useSelector(state => state.total);
+
 
   const {
     value: fullNameValue,
@@ -61,10 +64,24 @@ const CheckoutContent = () => {
     e.preventDefault();
 
     if (!formValid) return;
+    setIsSubmit(true);
 
-    console.log('Submitted!');
-    console.log(fullNameValue, emailValue, phoneValue, addressValue);
-    dispatch({ type: 'ORDER', orders: cartItems })
+    const user = {
+      name: fullNameValue,
+      email: emailValue,
+      phone: phoneValue,
+      address: addressValue
+    };
+    const order = {
+      user: user,
+      orderItems: cartItems
+    };
+    dispatch({ type: 'ORDER', order: order });
+    dispatch({ type: 'CLEAR_CART' });
+
+    setTimeout(() => {
+      setIsSubmit(false);
+    }, 1500);
 
     resetFullName();
     resetEmail();
@@ -127,7 +144,7 @@ const CheckoutContent = () => {
             onBlur={addressBlurHandler} />
           {addressHasError && <p className={classes.errorText}>Please enter an address.</p>}
 
-          <button>Place order</button>
+          <button>{!isSubmit ? 'Place order' : 'Submitting'}</button>
         </form>
 
         {/* Your order */}

@@ -9,6 +9,7 @@ const LOGOUT = 'LOGOUT';
 const ADD_CART = 'ADD_CART';
 const UPDATE_CART = 'UPDATE_CART';
 const DELETE_CART = 'DELETE_CART';
+const CLEAR_CART = 'CLEAR_CART';
 const ORDER = 'ORDER';
 
 const initialState = {
@@ -17,13 +18,8 @@ const initialState = {
   products: [],
   user: JSON.parse(localStorage.getItem('LOGINED_USER')) || null,
   cartItems: JSON.parse(localStorage.getItem('CART_ITEMS')) || [],
-  orders: [
-    {
-      user: {},
-      orderItems: []
-    }
-  ],
-  total: Number(localStorage.getItem('TOTAL')) || 0
+  total: Number(localStorage.getItem('TOTAL')) || 0,
+  orders: JSON.parse(localStorage.getItem('ORDERS')) || []
 }
 
 const reducer = (state = initialState, action) => {
@@ -176,8 +172,15 @@ const reducer = (state = initialState, action) => {
       }
 
       return { ...state, cartItems: removingCartItems, total: removingTotal };
+    case CLEAR_CART:
+      localStorage.removeItem('CART_ITEMS');
+      localStorage.removeItem('TOTAL');
+      return { ...state, cartItems: [], total: 0 }
     case ORDER:
-      return { ...state, orders: action.orders }
+      const updatedOrders = state.orders
+      updatedOrders.push(action.order)
+      localStorage.setItem('ORDERS', JSON.stringify(updatedOrders))
+      return { ...state, orders: updatedOrders }
     default:
       return state
   }
