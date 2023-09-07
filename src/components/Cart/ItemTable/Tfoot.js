@@ -1,9 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import classes from './Tfoot.module.css'
 
 const Tfoot = () => {
+  const cartItems = useSelector(state => state.cartItems);
+
   const navigate = useNavigate();
   const goToCheckout = (e) => {
     e.preventDefault();
@@ -25,9 +28,9 @@ const Tfoot = () => {
       <th
         colSpan='3'
         align='right'>
-        <span onClick={goToCheckout}>
+        {cartItems.length !== 0 && <span onClick={goToCheckout}>
           Proceed to checkout <i className='fa fa-long-arrow-right' />
-        </span>
+        </span>}
       </th>
     </tr>
   )

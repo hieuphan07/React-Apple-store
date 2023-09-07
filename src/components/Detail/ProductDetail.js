@@ -37,7 +37,8 @@ const ProductDetail = () => {
 
   const dispatch = useDispatch();
   const addCartHandler = () => {
-    dispatch({ type: 'ADD_CART', cartItem: productById, quantity: inputRef.current.value })
+    dispatch({ type: 'ADD_CART', cartItem: productById, quantity: inputRef.current.value });
+    inputRef.current.value = 1;
   }
   const selectProductHandler = (byProductId) => {
     const productId = byProductId._id.$oid;
