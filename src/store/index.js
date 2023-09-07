@@ -16,14 +16,14 @@ const initialState = {
   category: 'All',
   products: [],
   user: JSON.parse(localStorage.getItem('LOGINED_USER')) || null,
-  cartItems: [],
+  cartItems: JSON.parse(localStorage.getItem('CART_ITEMS')) || [],
   orders: [
     {
       user: {},
       orderItems: []
     }
   ],
-  total: 0,
+  total: Number(localStorage.getItem('TOTAL')) || 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -82,6 +82,9 @@ const reducer = (state = initialState, action) => {
         updatedCartItems[existingItemIndex] = updatedExistingItem;
         updatedTotal = updatedCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
 
+        localStorage.setItem('CART_ITEMS', JSON.stringify(updatedCartItems));
+        localStorage.setItem('TOTAL', updatedTotal)
+
         return { ...state, cartItems: updatedCartItems, total: updatedTotal };
       }
 
@@ -92,8 +95,12 @@ const reducer = (state = initialState, action) => {
         updatedCartItems = [...state.cartItems, { ...addedItem, quantity: inputQuantity, amount: amount }];
         updatedTotal = updatedCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
 
+        localStorage.setItem('CART_ITEMS', JSON.stringify(updatedCartItems));
+        localStorage.setItem('TOTAL', updatedTotal);
+
         return { ...state, cartItems: updatedCartItems, total: updatedTotal }
       }
+
     case UPDATE_CART:
       const changeQuantity = action.changeQuantity;
       const inputUpdatingItem = action.cartItem;
@@ -114,6 +121,9 @@ const reducer = (state = initialState, action) => {
         updatingCartItems[updatingItemIndex] = updatingExistingItem;
         updatingTotal = updatingCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
 
+        localStorage.setItem('CART_ITEMS', JSON.stringify(updatingCartItems));
+        localStorage.setItem('TOTAL', updatingTotal);
+
         return { ...state, cartItems: updatingCartItems, total: updatingTotal };
       }
 
@@ -128,11 +138,22 @@ const reducer = (state = initialState, action) => {
           updatingCartItems[updatingItemIndex] = updatingExistingItem;
           updatingTotal = updatingCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
 
+          localStorage.setItem('CART_ITEMS', JSON.stringify(updatingCartItems));
+          localStorage.setItem('TOTAL', updatingTotal);
+
           return { ...state, cartItems: updatingCartItems, total: updatingTotal };
         } else {
           updatingCartItems = [...state.cartItems];
           updatingCartItems.splice(updatingItemIndex, 1);
           updatingTotal = updatingCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
+
+          localStorage.setItem('CART_ITEMS', JSON.stringify(updatingCartItems));
+          localStorage.setItem('TOTAL', updatingTotal);
+
+          if (updatingCartItems.length === 0) {
+            localStorage.removeItem('CART_ITEMS');
+            localStorage.setItem('TOTAL', 0);
+          }
 
           return { ...state, cartItems: updatingCartItems, total: updatingTotal };
         }
@@ -145,6 +166,14 @@ const reducer = (state = initialState, action) => {
       removingCartItems.splice(removingItemIndex, 1);
 
       const removingTotal = removingCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
+
+      localStorage.setItem('CART_ITEMS', JSON.stringify(removingCartItems));
+      localStorage.setItem('TOTAL', removingTotal);
+
+      if (removingCartItems.length === 0) {
+        localStorage.removeItem('CART_ITEMS');
+        localStorage.setItem('TOTAL', 0);
+      }
 
       return { ...state, cartItems: removingCartItems, total: removingTotal };
     case ORDER:
