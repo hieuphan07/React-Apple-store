@@ -25,7 +25,7 @@ const ShoppingCart = () => {
   )
   return (
     <div className={classes.cart}>
-      <BannerNavigation title='Cart' navigation='Cart' />
+      <BannerNavigation title='CART' navigation='CART' />
       <h3>SHOPPING CART</h3>
       <div className={classes.wrapper}>
         <table>

@@ -7,7 +7,7 @@ import classes from './ProductList.module.css'
 const ProductList = () => {
 
   return <div className={classes.shop}>
-    <BannerNavigation title='Shop' navigation='Shop' />
+    <BannerNavigation title='SHOP' navigation='SHOP' />
     <ProductListNav />
     <ProductListMain />
   </div>

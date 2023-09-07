@@ -7,7 +7,7 @@ const Tfoot = () => {
   const navigate = useNavigate();
   const goToCheckout = (e) => {
     e.preventDefault();
-    navigate('/checkout');
+    navigate('/cart/checkout');
   }
   const goToShop = (e) => {
     e.preventDefault();

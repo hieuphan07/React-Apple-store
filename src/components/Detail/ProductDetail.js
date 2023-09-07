@@ -57,7 +57,7 @@ const ProductDetail = () => {
   return (
     <>
       <div className={classes.container}>
-        <BannerNavigation title='Detail' navigation='Shop/ProductID' />
+        <BannerNavigation title='DETAIL' navigation='SHOP / ProductID' />
         <div className={classes.wrapper}>
 
           {/* Product images */}
