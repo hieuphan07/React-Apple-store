@@ -9,6 +9,7 @@ const LOGOUT = 'LOGOUT';
 const ADD_CART = 'ADD_CART';
 const UPDATE_CART = 'UPDATE_CART';
 const DELETE_CART = 'DELETE_CART';
+const ORDER = 'ORDER';
 
 const initialState = {
   showInfo: false,
@@ -16,7 +17,8 @@ const initialState = {
   products: [],
   user: JSON.parse(localStorage.getItem('LOGINED_USER')) || null,
   cartItems: [],
-  total: 0
+  orderItems: [],
+  total: 0,
 }
 
 const reducer = (state = initialState, action) => {
@@ -128,6 +130,8 @@ const reducer = (state = initialState, action) => {
       const removingTotal = removingCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
 
       return { ...state, cartItems: removingCartItems, total: removingTotal };
+    case ORDER:
+      return { ...state, orderItems: action.orders }
     default:
       return state
   }

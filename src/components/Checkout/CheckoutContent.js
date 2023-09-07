@@ -1,6 +1,6 @@
 import React from 'react';
 import useInput from '../../hooks/useInput';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import classes from './CheckoutContent.module.css';
 
@@ -15,8 +15,11 @@ const formatter = new Intl.NumberFormat("de-DE", {
 });
 
 const CheckoutContent = () => {
+  const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cartItems);
-  const total = useSelector(state => state.total)
+  const orderItems = useSelector(state => state.orderItems);
+  const total = useSelector(state => state.total);
+
   const {
     value: fullNameValue,
     isValid: fullNameIsValid,
@@ -52,8 +55,8 @@ const CheckoutContent = () => {
 
   let formValid = false;
   if (fullNameIsValid && emailIsValid && phoneIsValid && addressIsValid) {
-    formValid = true
-  }
+    formValid = true;
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -62,12 +65,13 @@ const CheckoutContent = () => {
 
     console.log('Submitted!');
     console.log(fullNameValue, emailValue, phoneValue, addressValue);
+    dispatch({ type: 'ORDER', orders: cartItems })
 
     resetFullName();
     resetEmail();
     resetPhone();
     resetAddress();
-  }
+  };
 
   return (
     <div className={classes.checkoutContent}>
