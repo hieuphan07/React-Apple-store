@@ -45,6 +45,6 @@ button {
 .navbar button:hover,
 .navbar button:active {
   background-color: transparent !important;
-  color: rgb(255, 213, 47) !important;
+  color: #ffd52f !important;
 }
 

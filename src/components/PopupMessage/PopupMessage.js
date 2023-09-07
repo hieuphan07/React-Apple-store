@@ -1,45 +1,47 @@
-import React from 'react'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+
+import DUMMY_MESSAGES from '../../dummyData/dummyMessages.json';
 
 import classes from './PopupMessage.module.css';
 
-const PopupMessage = ({ onClose, children }) => {
-  const [isDragging, setIsDragging] = useState(false);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
+const popupMessage = document.getElementById('popup-message');
 
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setOffset({
-      x: e.clientX - e.currentTarget.getBoundingClientRect().left,
-      y: e.clientY - e.currentTarget.getBoundingClientRect().top,
-    });
-  };
+const PopupMessage = () => {
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e) => {
-    if (isDragging) {
-      const newX = e.clientX - offset.x;
-      const newY = e.clientY - offset.y;
-      e.currentTarget.style.left = newX + 'px';
-      e.currentTarget.style.top = newY + 'px';
-    }
-  };
-
-  return (
+  return ReactDOM.createPortal(
     <div
       className={classes['movable-popup']}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseMove={handleMouseMove}
     >
-      <button className={classes['close-button']} onClick={onClose}>
-        X
-      </button>
-      {children}
-    </div>
+      <div
+        className={classes.header}>
+        <h4>Customer Support</h4>
+        <button>Let's Chat App</button>
+      </div>
+      <div className={classes.message}>
+        <ul>{DUMMY_MESSAGES.map(mess =>
+          <li
+            key={mess.message}
+            className={mess.person === 'client' ? classes.client : classes.admin}>
+            {mess.person === 'admin' && <FontAwesomeIcon icon={faUser} size="2x" />}
+            <p>{`
+            ${mess.person === 'admin' ? 'ADMIN: ' : ''}
+            ${mess.message}
+            `}</p>
+          </li>
+        )}</ul>
+      </div>
+      <div className={classes.typing}>
+        <FontAwesomeIcon icon={faUser} size="2x" />
+        <input type='text' placeholder='Enter Message!' />
+        <i className='fa fa-paperclip' />
+        <i className='fa fa-smile-o' />
+        <i className='fa fa-paper-plane-o' style={{ color: 'var(--blue-light)' }} />
+      </div>
+    </div>, popupMessage
   );
 };
 
-export default PopupMessage
+export default PopupMessage;
