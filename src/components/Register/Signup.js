@@ -4,11 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import classes from './Signup.module.css';
 
+const phonePattern = /^\d{2}[-]\d{3}[-]\d{3}[-]\d{3}$/;
 const isNotEmpty = (value) => value.trim() !== "";
 const isEmail = (value) => value.includes("@");
 const isPassword = (value) => value.length >= 8 && /\d/.test(value) && /[a-zA-Z]/.test(value);
 const isPhone = (value) => phonePattern.test(value);
-const phonePattern = /^\d{2}[-]\d{3}[-]\d{3}[-]\d{3}$/;
 
 const Signup = () => {
   const navigate = useNavigate();
