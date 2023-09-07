@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import BannerNavigation from '../../components/BannerNavigation';
@@ -12,6 +12,7 @@ const formatter = new Intl.NumberFormat("de-DE", {
 });
 
 const ProductDetail = () => {
+  const navigate = useNavigate();
   const inputRef = useRef();
   const localItem = localStorage.getItem('SELECTED_PRODUCTS');
   const SELECTED_PRODUCTS = JSON.parse(localItem);
@@ -38,10 +39,19 @@ const ProductDetail = () => {
   const addCartHandler = () => {
     dispatch({ type: 'ADD_CART', cartItem: productById, quantity: inputRef.current.value })
   }
+  const selectProductHandler = (byProductId) => {
+    const productId = byProductId._id.$oid;
+    dispatch({ type: 'PRODUCT_SELECT', selectedProds: SELECTED_PRODUCTS });
+    navigate(`/shop/${productId}`)
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [])
+    scrollToTop()
+  }, [scrollToTop])
 
   return (
     <>
@@ -95,7 +105,7 @@ const ProductDetail = () => {
         <div className={classes.relatedProducts}>
           <h3>RELATED PRODUCTS</h3>
           <ul>
-            {relatedProducts.map((prods, ind) => <li key={prods._id.$oid}>
+            {relatedProducts.map((prods, ind) => <li key={prods._id.$oid} onClick={() => selectProductHandler(prods)}>
               <img src={prods.img1} alt={`prod-${ind + 1}`} />
               <span>{prods.name}</span>
               <span>{formatter.format(prods.price)}</span>

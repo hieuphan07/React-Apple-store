@@ -1,17 +1,26 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import classes from './Popup.module.css'
 
-const Popup = ({ detail }) => {
+const formatter = new Intl.NumberFormat('de-DE', {
+  style: 'currency',
+  currency: 'VND'
+});
+
+const Popup = ({ detail, trendingProducts }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch()
   const hideInfoHandler = () => {
     dispatch({ type: 'HIDE_INFO' })
   }
-
-  const formatter = new Intl.NumberFormat('de-DE', {
-    style: 'currency',
-    currency: 'VND'
-  });
+  const selectProductHandler = () => {
+    const selectedProducts = trendingProducts.filter(curr => curr.category === detail.category)
+    const productId = detail._id.$oid;
+    dispatch({ type: 'PRODUCT_SELECT', selectedProds: selectedProducts });
+    localStorage.setItem('SELECTED_PRODUCTS', JSON.stringify(selectedProducts));
+    navigate(`/shop/${productId}`)
+  }
 
   return (
     <div className={classes['popup-overlay']} onClick={(event) => {
@@ -29,7 +38,7 @@ const Popup = ({ detail }) => {
           <span className={classes.name}>{detail['name']}</span>
           <span className={classes.price}>{formatter.format(detail['price'])}</span>
           <span className={classes.detail}>{detail['short_desc']}</span>
-          <button>View Detail</button>
+          <button onClick={selectProductHandler}>View Detail</button>
           <span className={classes.close} onClick={hideInfoHandler}></span>
         </div>
 

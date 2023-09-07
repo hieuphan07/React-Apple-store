@@ -33,7 +33,7 @@ const HomePage = () => {
   return <>
     <HomePageContent />
     <TrendingProducts trendingProducts={data} />
-    {showInfo && detail && <Popup detail={detail} />}
+    {showInfo && detail && <Popup detail={detail} trendingProducts={data} />}
   </>
 }
 

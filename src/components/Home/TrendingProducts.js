@@ -5,6 +5,11 @@ import DUMMY_EXTRA_INFO from "../../dummyData/dunmmyExtraInfo.json";
 
 import classes from "./TrendingProducts.module.css";
 
+const formatter = new Intl.NumberFormat("de-DE", {
+  style: "currency",
+  currency: "VND",
+});
+
 const TrendingProducts = ({ trendingProducts }) => {
   const [activeImage, mouseEnterHandler, mouseLeaveHandler] = useMouse();
 
@@ -12,11 +17,6 @@ const TrendingProducts = ({ trendingProducts }) => {
   const showInfoHandler = (detail) => {
     dispatch({ type: "SHOW_INFO", payload: detail });
   };
-
-  const formatter = new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "VND",
-  });
 
   return (
     <div className={classes.shopList}>
