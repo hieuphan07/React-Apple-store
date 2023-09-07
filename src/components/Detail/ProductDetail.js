@@ -42,6 +42,7 @@ const ProductDetail = () => {
   const selectProductHandler = (byProductId) => {
     const productId = byProductId._id.$oid;
     dispatch({ type: 'PRODUCT_SELECT', selectedProds: SELECTED_PRODUCTS });
+    inputRef.current.value = 1;
     navigate(`/shop/${productId}`)
   }
 
