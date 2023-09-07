@@ -14,11 +14,14 @@ const Popup = ({ detail, trendingProducts }) => {
   const hideInfoHandler = () => {
     dispatch({ type: 'HIDE_INFO' })
   }
+
   const selectProductHandler = () => {
     const selectedProducts = trendingProducts.filter(curr => curr.category === detail.category)
     const productId = detail._id.$oid;
+
     dispatch({ type: 'PRODUCT_SELECT', selectedProds: selectedProducts });
     localStorage.setItem('SELECTED_PRODUCTS', JSON.stringify(selectedProducts));
+
     navigate(`/shop/${productId}`)
   }
 
@@ -29,11 +32,13 @@ const Popup = ({ detail, trendingProducts }) => {
       <div className={classes.popup}>
 
         {/* Product image */}
+
         <div className={classes.img}>
           <img src={detail['img1']}></img>
         </div>
 
         {/* Product text */}
+
         <div className={classes.info}>
           <span className={classes.name}>{detail['name']}</span>
           <span className={classes.price}>{formatter.format(detail['price'])}</span>

@@ -14,8 +14,8 @@ const formatter = new Intl.NumberFormat("de-DE", {
 const ProductDetail = () => {
   const navigate = useNavigate();
   const inputRef = useRef();
-  const localItem = localStorage.getItem('SELECTED_PRODUCTS');
-  const SELECTED_PRODUCTS = JSON.parse(localItem);
+  const localItems = localStorage.getItem('SELECTED_PRODUCTS');
+  const SELECTED_PRODUCTS = JSON.parse(localItems);
 
   const params = useParams();
   const id = params.productId;
@@ -40,6 +40,7 @@ const ProductDetail = () => {
     dispatch({ type: 'ADD_CART', cartItem: productById, quantity: inputRef.current.value });
     inputRef.current.value = 1;
   }
+
   const selectProductHandler = (byProductId) => {
     const productId = byProductId._id.$oid;
     dispatch({ type: 'PRODUCT_SELECT', selectedProds: SELECTED_PRODUCTS });

@@ -29,8 +29,11 @@ const Signin = () => {
   } = useInput(isNotEmpty);
 
   const [isCorrect, setIsCorrect] = useState(true);
-  let formIsValid = false;
+  const focusHandler = () => {
+    setIsCorrect(true);
+  }
 
+  let formIsValid = false;
   if (emailIsValid && passwordIsValid) {
     formIsValid = true;
   }
@@ -65,15 +68,18 @@ const Signin = () => {
     dispatch({ type: 'LOGOUT' });
   }
 
-  const focusHandler = () => {
-    setIsCorrect(true);
-  }
+
 
   return (
     <div className={classes.signin}>
       <div className={classes.wrapper}>
+
+        {/* Before login */}
         {!loginedUser && <form onSubmit={loginHandler}>
           <h3>Sign In</h3>
+
+          {/* Email */}
+
           <input
             type='email'
             placeholder='Email'
@@ -82,6 +88,9 @@ const Signin = () => {
             onChange={emailChangeHandler}
             onBlur={emailBlurHandler}
             onFocus={focusHandler} />
+
+          {/* Password */}
+
           <input
             type='password'
             placeholder='Password'
@@ -90,14 +99,21 @@ const Signin = () => {
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler}
             onFocus={focusHandler} />
+
+          {/* Warning */}
           {emailHasError && <p className={classes['error-text']}>Please enter a email</p>}
           {passwordHasError && <p className={classes['error-text']}>Please enter a password</p>}
           {!isCorrect && <p className={classes['error-text']}>Your email or password was incorrect</p>}
+
           <button>SIGN IN</button>
         </form>}
+
+        {/* After login */}
+
         {!loginedUser && <p>Create an account? <Link to='/register'>Sign up</Link></p>}
         {loginedUser && <h1>{`Welcome ${loginedUser.name}!`}</h1>}
         {loginedUser && <button className={classes.logout} onClick={logoutHandler}>Log out</button>}
+
       </div>
     </div>
   )

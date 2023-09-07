@@ -4,17 +4,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import MainContentBanner from './MainContentBanner';
 import Indicator from './Indicator';
 
-import classes from './ProductListMain.module.css'
+import classes from './ProductListMain.module.css';
+
+const formatter = new Intl.NumberFormat("de-DE", {
+  style: "currency",
+  currency: "VND",
+});
 
 const ProductListMain = () => {
   const data = useLoaderData();
+
   const selectedType = useSelector(state => state.category);
   const dispatch = useDispatch();
+
   let dataFiltered;
-  const formatter = new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "VND",
-  });
 
   if (selectedType !== 'All') {
     dataFiltered = data
@@ -34,6 +37,7 @@ const ProductListMain = () => {
       <MainContentBanner />
 
       {/* Product lists */}
+
       <ul className={classes.shopListItem}>
         {dataFiltered
           .map((prod, index) => (

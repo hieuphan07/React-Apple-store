@@ -14,7 +14,6 @@ const Signup = () => {
   const navigate = useNavigate();
   const users = JSON.parse(localStorage.getItem('USERS')) || [];
 
-  // Declare variables
   const {
     value: fullNameValue,
     isValid: fullNameIsValid,
@@ -49,12 +48,13 @@ const Signup = () => {
   } = useInput(isPhone);
 
   const [isDuplicate, setIsDuplicate] = useState(false);
-  let formIsValid = false;
 
+  let formIsValid = false;
   if (fullNameIsValid && emailIsValid && passwordIsValid && phoneIsValid) {
     formIsValid = true;
   }
 
+  // Confirm register
   const submitHanlder = (e) => {
     e.preventDefault();
 
@@ -92,7 +92,9 @@ const Signup = () => {
       <div className={classes.wrapper}>
         <form onSubmit={submitHanlder}>
           <h3>Sign Up</h3>
+
           {/* Full name */}
+
           <input
             type='text'
             placeholder='Full Name'
@@ -100,7 +102,9 @@ const Signup = () => {
             value={fullNameValue}
             onChange={fullNameChangeHandler}
             onBlur={fullNameBlurHandler} />
+
           {/* Email */}
+
           <input
             type='email'
             placeholder='Email'
@@ -108,7 +112,9 @@ const Signup = () => {
             value={emailValue}
             onChange={emailChangeHandler}
             onBlur={emailBlurHandler} />
+
           {/* Password */}
+
           <input
             type='password'
             placeholder='Password'
@@ -116,7 +122,9 @@ const Signup = () => {
             value={passwordValue}
             onChange={passwordChangeHandler}
             onBlur={passwordBlurHandler} />
+
           {/* Phone */}
+
           <input
             type='tel'
             placeholder='Phone'
@@ -125,12 +133,15 @@ const Signup = () => {
             value={phoneValue}
             onChange={phoneChangeHandler}
             onBlur={phoneBlurHandler} />
+
           {/* Warning */}
+
           {fullNameHasError && <p className={classes['error-text']}>Please enter a full name</p>}
           {emailHasError && <p className={classes['error-text']}>Please enter a valid email</p>}
           {passwordHasError && <p className={classes['error-text']}>Please enter a valid password</p>}
           {phoneHasError && <p className={classes['error-text']}>Please enter a valid phone number. Pattern: "00-123-456-789"</p>}
           {isDuplicate && <p className={classes['error-text']}>Email already registered</p>}
+
           <button>SIGN UP</button>
         </form>
         <p>Login? <Link to='/login'>Click</Link></p>

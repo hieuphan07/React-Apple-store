@@ -15,21 +15,20 @@ import messageIcon from '../../images/message_icon.png';
 import classes from "./HomePageContent.module.css";
 
 const HomePageContent = () => {
+  const imgListOne = [product1, product2];
+  const imgListTwo = [product3, product4, product5];
+
   const navigate = useNavigate();
   const goToShopPageHandler = () => {
     navigate("shop");
   };
 
-  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [activeImage, mouseEnterHandler, mouseLeaveHandler] = useMouse();
 
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
   const togglePopup = () => {
     setIsPopupVisible(!isPopupVisible);
   };
-
-  const [activeImage, mouseEnterHandler, mouseLeaveHandler] = useMouse();
-
-  const imgListOne = [product1, product2];
-  const imgListTwo = [product3, product4, product5];
 
   return (
     <div className={classes.container}>
@@ -84,10 +83,14 @@ const HomePageContent = () => {
           ))}
         </div>
       </div>
+
+      {/* Popup message */}
+
       <div className={classes.messageIcon}>
         <img src={messageIcon} alt='message-icon' onClick={togglePopup} />
       </div>
       {isPopupVisible && <PopupMessage />}
+
     </div>
   );
 };

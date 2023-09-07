@@ -7,9 +7,9 @@ const Indicator = () => {
     <>
       <div className={classes['indicator-container']}>
         <div className={classes.indicator}>
-          <button>{`<<`}</button>
+          <button><i className='fa fa-angle-double-left' /></button>
           <span>1</span>
-          <button>{`>>`}</button>
+          <button><i className='fa fa-angle-double-right' /></button>
         </div>
       </div>
       <div className={classes['indicator-info']}>

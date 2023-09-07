@@ -8,14 +8,17 @@ const Tfoot = () => {
   const cartItems = useSelector(state => state.cartItems);
 
   const navigate = useNavigate();
+
   const goToCheckout = (e) => {
     e.preventDefault();
     navigate('/cart/checkout');
   }
+
   const goToShop = (e) => {
     e.preventDefault();
     navigate('/shop');
   }
+
   return (
     <tr className={classes.tfoot}>
       <th

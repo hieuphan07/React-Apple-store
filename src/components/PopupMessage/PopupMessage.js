@@ -15,11 +15,16 @@ const PopupMessage = () => {
     <div
       className={classes['movable-popup']}
     >
+      {/* Header */}
+
       <div
         className={classes.header}>
         <h4>Customer Support</h4>
         <button>Let's Chat App</button>
       </div>
+
+      {/* Message content */}
+
       <div className={classes.message}>
         <ul>{DUMMY_MESSAGES.map(mess =>
           <li
@@ -33,6 +38,9 @@ const PopupMessage = () => {
           </li>
         )}</ul>
       </div>
+
+      {/* Write message */}
+
       <div className={classes.typing}>
         <FontAwesomeIcon icon={faUser} size="2x" />
         <input type='text' placeholder='Enter Message!' />
@@ -40,6 +48,7 @@ const PopupMessage = () => {
         <i className='fa fa-smile-o' />
         <i className='fa fa-paper-plane-o' style={{ color: 'var(--blue-light)' }} />
       </div>
+
     </div>, popupMessage
   );
 };

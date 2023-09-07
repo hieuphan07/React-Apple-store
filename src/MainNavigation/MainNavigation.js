@@ -54,6 +54,7 @@ const NavBar = () => {
                   className={({ isActive }) => isActive ? classes.active : undefined}>
                   <i className="fa fa-user"></i>
                   {' '}{loginedUser ? loginedUser.name : 'Login'}
+                  {' '}{loginedUser && <i className='fa fa-caret-down' />}
                 </NavLink>
               </li>
               {loginedUser ? <li>
@@ -63,7 +64,8 @@ const NavBar = () => {
           </li>
         </ul>
       </nav >
-    </header >)
+    </header >
+  )
 }
 
 export default NavBar;

@@ -17,7 +17,12 @@ const initialState = {
   products: [],
   user: JSON.parse(localStorage.getItem('LOGINED_USER')) || null,
   cartItems: [],
-  orderItems: [],
+  orders: [
+    {
+      user: {},
+      orderItems: []
+    }
+  ],
   total: 0,
 }
 
@@ -67,6 +72,8 @@ const reducer = (state = initialState, action) => {
       let updatedCartItems;
       let updatedTotal;
 
+      // If added-item is existing then updating quantity only
+
       if (existingItem) {
         const updatedQuantity = Number(existingItem.quantity) + Number(inputQuantity);
         const updatedAmount = updatedQuantity * existingItem.price;
@@ -76,7 +83,11 @@ const reducer = (state = initialState, action) => {
         updatedTotal = updatedCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
 
         return { ...state, cartItems: updatedCartItems, total: updatedTotal };
-      } else {
+      }
+
+      // If added-item is not existing then adding to cart items
+
+      else {
         const amount = inputQuantity * addedItem.price;
         updatedCartItems = [...state.cartItems, { ...addedItem, quantity: inputQuantity, amount: amount }];
         updatedTotal = updatedCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
@@ -93,6 +104,8 @@ const reducer = (state = initialState, action) => {
       let updatingCartItems;
       let updatingTotal;
 
+      // Add 1 quantity
+
       if (changeQuantity === 'ADD') {
         const updatingQuantity = Number(updatingItem.quantity) + 1;
         const updatingAmount = updatingQuantity * updatingItem.price;
@@ -102,7 +115,11 @@ const reducer = (state = initialState, action) => {
         updatingTotal = updatingCartItems.reduce((total, curr) => total + Number(curr.amount), 0);
 
         return { ...state, cartItems: updatingCartItems, total: updatingTotal };
-      } else {
+      }
+
+      // Remove 1 quantity
+
+      else {
         const updatingQuantity = Number(updatingItem.quantity) - 1;
         if (updatingQuantity > 0) {
           const updatingAmount = updatingQuantity * updatingItem.price;
@@ -131,7 +148,7 @@ const reducer = (state = initialState, action) => {
 
       return { ...state, cartItems: removingCartItems, total: removingTotal };
     case ORDER:
-      return { ...state, orderItems: action.orders }
+      return { ...state, orders: action.orders }
     default:
       return state
   }
