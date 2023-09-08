@@ -92,6 +92,24 @@
   font-weight: 300;
 }
 
+.didSubmit {
+text-align: center;
+margin: 1rem auto;
+}
+
+.didSubmit button {
+  background-color: #555;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.didSubmit button:hover {
+  background-color: var(--grey-light);
+  color: #333;
+}
+
 /* Mobile */
 
 @media(max-width: 768px) {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useInput from '../../hooks/useInput';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import classes from './CheckoutContent.module.css';
 
@@ -15,7 +16,14 @@ const isEmail = (value) => value.includes("@");
 const isPhone = (value) => phonePattern.test(value);
 
 const CheckoutContent = () => {
+  const navigate = useNavigate()
   const [isSubmit, setIsSubmit] = useState(false);
+  const [didSubmit, setDidSubmit] = useState(false);
+
+  const backHandler = () => {
+    navigate('/');
+    setDidSubmit(false);
+  }
 
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cartItems);
@@ -60,6 +68,8 @@ const CheckoutContent = () => {
     formValid = true;
   };
 
+  // Submit handler 
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -81,6 +91,7 @@ const CheckoutContent = () => {
 
     setTimeout(() => {
       setIsSubmit(false);
+      setDidSubmit(true);
     }, 1500);
 
     resetFullName();
@@ -92,7 +103,7 @@ const CheckoutContent = () => {
   return (
     <div className={classes.checkoutContent}>
       <h3>BILLING DETAILS</h3>
-      <div className={classes.wrapper}>
+      {!didSubmit && <div className={classes.wrapper}>
         <form onSubmit={submitHandler}>
 
           {/* Full name */}
@@ -169,7 +180,11 @@ const CheckoutContent = () => {
           </div>
         </div>
 
-      </div>
+      </div>}
+      {didSubmit && <div className={classes.didSubmit}>
+        <h4>Successfully placed order.</h4>
+        <button onClick={backHandler}>Return Home</button>
+      </div>}
     </div>
   )
 }
