@@ -1,3 +1,7 @@
+# DEPLOYED URL
+
+link: https://react-ecommerce-shop-3ffc9.web.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
