@@ -22,7 +22,6 @@ const CheckoutContent = () => {
 
   const backHandler = () => {
     navigate('/');
-    setDidSubmit(false);
   }
 
   const dispatch = useDispatch();

@@ -21,8 +21,9 @@ const Popup = ({ detail, trendingProducts }) => {
 
     dispatch({ type: 'PRODUCT_SELECT', selectedProds: selectedProducts });
     localStorage.setItem('SELECTED_PRODUCTS', JSON.stringify(selectedProducts));
+    dispatch({ type: 'HIDE_INFO' });
 
-    navigate(`/shop/${productId}`)
+    navigate(`/shop/${productId}`);
   }
 
   return (
