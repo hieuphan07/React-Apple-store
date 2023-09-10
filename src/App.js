@@ -23,7 +23,10 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
-    errorElement: <Suspense><Error /></Suspense>,
+    errorElement:
+      <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
+        <Error />
+      </Suspense>,
     children: [
       {
         index: true,
@@ -35,10 +38,18 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Suspense><Shop /></Suspense>,
+            element:
+              <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
+                <Shop />
+              </Suspense>,
             loader: () => import('./pages/Shop').then(module => module.loader()),
           },
-          { path: ':productId', element: <Suspense><Detail /></Suspense> },
+          {
+            path: ':productId', element:
+              <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
+                <Detail />
+              </Suspense>
+          },
         ]
       },
       {
@@ -46,13 +57,26 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Suspense><Cart /></Suspense>
+            element:
+              <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
+                <Cart />
+              </Suspense>
           },
           { path: 'checkout', element: <Suspense><Checkout /></Suspense> },
         ]
       },
-      { path: 'login', element: <Suspense><Login /></Suspense> },
-      { path: 'register', element: <Suspense><Register /></Suspense> },
+      {
+        path: 'login', element:
+          <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
+            <Login />
+          </Suspense>
+      },
+      {
+        path: 'register', element:
+          <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
+            <Register />
+          </Suspense>
+      },
     ]
   }
 ])
